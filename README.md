@@ -4,7 +4,14 @@
 
 End-to-end UI test automation for the TokoMart mobile app using [Maestro](https://maestro.mobile.dev/) — declarative YAML flows that run on Android and iOS without any test harness compiled into the app.
 
-![TokoMart Maestro](docs/img/tokomart_maestro_1.png)
+  <div>
+    <img src="docs/img/tokomart_maestro_1.png" alt="TokoMart-Maestro" width="1000" />
+  </div>
+    <br />
+    <div>
+      <img src="docs/img/toko-mart-maestro-run-read-me-v1.gif" alt="TokoMart-Maestro-gif" width="1000" />
+    </div>
+  </div>
 
 </div>
 
