@@ -9,7 +9,7 @@ End-to-end UI test automation for the TokoMart mobile app using [Maestro](https:
   </div>
     <br />
     <div>
-      <img src="toko-mart-maestro-run-read-me-v1.gif" alt="TokoMart-Maestro-gif" width="1000" />
+      <img src="docs/img/toko-mart-maestro-run-read-me-v1.gif" alt="TokoMart-Maestro-gif" width="1000" />
     </div>
   </div>
 
