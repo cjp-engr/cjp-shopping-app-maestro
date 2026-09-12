@@ -38,6 +38,8 @@ Copy `.env.example` to `.env` and fill in your values:
 APP_ID=com.example.TokoMart
 EMAIL=your@email.com
 PASSWORD=yourpassword
+BUYER_EMAIL=buyer@email.com
+BUYER_PASSWORD=buyerpassword
 API_URL=http://10.0.2.2:5000
 ```
 
@@ -76,7 +78,8 @@ maestro studio
 ```
 tests/
   0_auth/
-    login_flow.yaml                 # Shared login subflow (used by all tests)
+    login_flow.yaml                 # Seller login subflow
+    buyer_login_flow.yaml           # Buyer login subflow (uses BUYER_EMAIL/BUYER_PASSWORD)
     signup_flow.yaml
   1_seller/
     add_product_simple_flow.yaml    # TC-090
@@ -86,7 +89,7 @@ tests/
     delete_product_simple_flow.yaml # TC-617
     delete_product_variant_flow.yaml# TC-620
   2_buyer/
-    simple_cod_checkout_flow.yaml
+    simple_cod_checkout_flow.yaml   # TC-095
     simple_new_credit_checkout_flow.yaml
     simple_saved_credit_checkout_flow.yaml
     variant_cod_checkout_flow.yaml
@@ -112,10 +115,17 @@ elements/
 
 ## Architecture
 
-All flows start with:
+Seller flows start with:
 ```yaml
 - runFlow: ../0_auth/login_flow.yaml
 ```
+
+Buyer flows start with:
+```yaml
+- runFlow: ../0_auth/buyer_login_flow.yaml
+```
+
+Add `BUYER_EMAIL` and `BUYER_PASSWORD` to your `.env` for buyer flows.
 
 This runs `loadElements.yaml`, which loads all selector scripts and performs API login — making `output.*` selectors and `output.TOKEN` available throughout the flow.
 
@@ -228,3 +238,4 @@ Flows that create data via the UI wizard clean up using `deleteProduct.js` at th
 | `edit-product-variant` | TC-619 | `edit_product_variant_flow.yaml` |
 | `delete-product-simple` | TC-617 | `delete_product_simple_flow.yaml` |
 | `delete-product-variant` | TC-620 | `delete_product_variant_flow.yaml` |
+| `checkout-cod-simple` | TC-095 | `simple_cod_checkout_flow.yaml` |
