@@ -3,9 +3,14 @@ appId: ${APP_ID}
 ---
 
 - runScript: selectors/login.js
-- runScript: selectors/navBar.js
-- runScript: selectors/sellerDashboard.js
 - runScript: selectors/addEditProduct.js
+- runScript: selectors/cart.js
+- runScript: selectors/navBar.js
+- runScript: selectors/orders.js
+- runScript: selectors/productDetails.js
+- runScript: selectors/products.js
+- runScript: selectors/sellerDashboard.js
+
 - runScript:
     file: clients/apiClients.js
     env:
