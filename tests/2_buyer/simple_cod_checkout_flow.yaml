@@ -15,75 +15,31 @@ tags:
 
 - runFlow: ../0_auth/buyer_login_flow.yaml
 
-# Search the product
-- tapOn:
-    text: "New Arrivals"
-    label: "Assert home screen loaded"
-- tapOn:
-    id: ${output.products.searchField}
-    label: "Tap search field"
-- inputText: 
-    text: "The Art of Programming"
-    label: "Enter Product Name to search"
+- runFlow:
+    file: ../../elements/flows/search_and_add_to_cart.yaml
+    env:
+      PRODUCT_NAME: "The Art of Programming"
 
-# Tap the product
-- tapOn:
-    id: ${output.products.productList}
-    index: 0
-    label: "Tap the first product"
-      
-# --- Product Detail: Add to Cart ---
-- assertVisible: "The Art of Programming"
-- tapOn: 
-    text: "Add to Cart"
-    label: "Add product - The Art of Programming to cart"
-
-# --- Navigate to Cart ---
-- tapOn:
-    id: ${output.productDetails.cartButton}
-    label: "Navigate to cart"
-
-# --- Proceed to Checkout ---
-- tapOn: 
-    text: "Checkout"
-    label: "Proceed to Checkout"
-
-# --- Fill Shipping Address ---
-- tapOn: "Street Address"
-- inputText: 
-    text: "123 Test Street"
-    label: "Enter street address"
-- tapOn: "City"
-- inputText: 
-    text: "Manila"
-    label: "Enter city"
-- tapOn: "State / Province"
-- inputText: 
-    text: "Metro Manila"
-    label: "Enter state"
-- tapOn: "ZIP Code"
-- inputText: 
-    text: "1000"
-    label: "Enter zip code"
+- runFlow: ../../elements/flows/proceed_to_checkout.yaml
 
 # --- Select COD ---
 - scrollUntilVisible:
     element:
-        text: "Cash on Delivery"
-- tapOn: 
+      text: "Cash on Delivery"
+- tapOn:
     text: "Cash on Delivery"
     label: "Select COD as Payment"
 
 # --- Place Order ---
-- tapOn: 
+- tapOn:
     text: "Place Order"
     label: "Click Place Order button"
 
-- assertVisible: 
+- assertVisible:
     id: ${output.orders.ordersScreen}
     label: "Verify Order screen"
 
-- assertVisible: 
+- assertVisible:
     text: "The Art of Programming"
     index: 0
     label: "Verify that the latest order is on the first list"
