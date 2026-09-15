@@ -1,0 +1,51 @@
+appId: ${APP_ID}
+---
+
+- scrollUntilVisible:
+    element:
+      text: "Credit Card"
+- tapOn:
+    text: "Credit Card"
+    label: "Select Credit Card as Payment"
+
+- scrollUntilVisible:
+    element:
+      text: "Card Number"
+- tapOn:
+    text: "Card Number"
+- inputText:
+    text: ${CARD_NUMBER}
+    label: "Enter card number"
+
+- scrollUntilVisible:
+    element:
+      text: "Cardholder Name"
+- tapOn:
+    text: "Cardholder Name"
+- inputText:
+    text: ${CARDHOLDER_NAME}
+    label: "Enter cardholder name"
+
+# --- Select expiry month ---
+- hideKeyboard
+- scrollUntilVisible:
+    element:
+      id: ${output.checkout.creditCard.expiryMonthField}
+- tapOn:
+    id: ${output.checkout.creditCard.expiryMonthField}
+    label: "Tap Expiry Month field"
+- tapOn:
+    id: "${output.checkout.creditCard.expiryItem}${EXPIRY_MONTH}"
+    label: "Select expiry month"
+- tapOn:
+    text: "Done"
+
+# --- Select expiry year ---
+- tapOn:
+    id: ${output.checkout.creditCard.expiryYearField}
+    label: "Tap Expiry Year field"
+- tapOn:
+    id: "${output.checkout.creditCard.expiryItem}${EXPIRY_YEAR}"
+    label: "Select expiry year"
+- tapOn:
+    text: "Done"

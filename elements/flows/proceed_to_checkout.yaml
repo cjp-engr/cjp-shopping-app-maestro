@@ -1,0 +1,27 @@
+appId: ${APP_ID}
+---
+
+- tapOn:
+    text: "Checkout"
+    label: "Proceed to Checkout"
+
+# --- Fill Shipping Address ---
+- tapOn: "Street Address"
+- inputText:
+    text: "123 Test Street"
+    label: "Enter street address"
+
+- tapOn: "City"
+- inputText:
+    text: "Manila"
+    label: "Enter city"
+
+- tapOn: "State / Province"
+- inputText:
+    text: "Metro Manila"
+    label: "Enter state"
+
+- tapOn: "ZIP Code"
+- inputText:
+    text: "1000"
+    label: "Enter zip code"

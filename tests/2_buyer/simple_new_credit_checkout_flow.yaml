@@ -1,0 +1,44 @@
+appId: ${APP_ID}
+name: "TC-096: Buyer Checks Out Simple Product via New Credit Card"
+# Description: Verifies that a buyer can add a simple product to cart, proceed to checkout,
+#              enter a new credit card, place the order, and see it in order history.
+# Preconditions:
+#   - Buyer account exists (BUYER_EMAIL/BUYER_PASSWORD)
+#   - At least one published product is visible on the home/search screen
+tags:
+  - checkout-credit-simple
+  - buyer
+
+---
+
+- runFlow: ../0_auth/buyer_login_flow.yaml
+
+- runFlow:
+    file: ../../elements/flows/search_and_add_to_cart.yaml
+    env:
+      PRODUCT_NAME: "The Art of Programming"
+
+- runFlow: ../../elements/flows/proceed_to_checkout.yaml
+
+# --- Select and enter Credit Card details ---
+- runFlow:
+    file: ../../elements/flows/enter_new_credit_card.yaml
+    env:
+      CARD_NUMBER: "4111111111111111"
+      CARDHOLDER_NAME: "Test Buyer"
+      EXPIRY_MONTH: "03"
+      EXPIRY_YEAR: "2028"
+
+# --- Place Order ---
+- tapOn:
+    text: "Place Order"
+    label: "Click Place Order button"
+
+- assertVisible:
+    id: ${output.orders.ordersScreen}
+    label: "Verify Order screen"
+
+- assertVisible:
+    text: "The Art of Programming"
+    index: 0
+    label: "Verify that the latest order is on the first list"
