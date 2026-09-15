@@ -1,0 +1,23 @@
+appId: ${APP_ID}
+---
+
+- tapOn:
+    id: ${output.products.searchField}
+    label: "Tap search field"
+- inputText:
+    text: ${PRODUCT_NAME}
+    label: "Enter product name to search"
+
+- tapOn:
+    id: ${output.products.productList}
+    index: 0
+    label: "Tap the first product"
+
+- assertVisible: ${PRODUCT_NAME}
+- tapOn:
+    text: "Add to Cart"
+    label: "Add product to cart"
+
+- tapOn:
+    id: ${output.productDetails.cartButton}
+    label: "Navigate to cart"

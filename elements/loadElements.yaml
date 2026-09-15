@@ -5,6 +5,7 @@ appId: ${APP_ID}
 - runScript: selectors/login.js
 - runScript: selectors/addEditProduct.js
 - runScript: selectors/cart.js
+- runScript: selectors/checkout.js
 - runScript: selectors/navBar.js
 - runScript: selectors/orders.js
 - runScript: selectors/productDetails.js
