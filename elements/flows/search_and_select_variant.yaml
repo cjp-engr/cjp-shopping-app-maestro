@@ -1,0 +1,33 @@
+appId: ${APP_ID}
+# Reusable subflow: search for a product, select a variant attribute, then add to cart.
+# Required env vars:
+#   PRODUCT_NAME   — product to search for
+#   VARIANT_LABEL  — variant attribute to select (e.g. "M", "Red", "128GB")
+---
+
+- tapOn:
+    id: ${output.products.searchField}
+    label: "Tap search field"
+- inputText:
+    text: ${PRODUCT_NAME}
+    label: "Enter product name to search"
+
+- tapOn:
+    id: ${output.products.productList}
+    index: 0
+    label: "Tap the first product"
+
+- assertVisible: ${PRODUCT_NAME}
+
+# --- Select variant attribute ---
+- tapOn:
+    text: ${VARIANT_LABEL}
+    label: "Select variant - ${VARIANT_LABEL}"
+
+- tapOn:
+    text: "Add to Cart"
+    label: "Add variant product to cart"
+
+- tapOn:
+    id: ${output.productDetails.cartButton}
+    label: "Navigate to cart"
