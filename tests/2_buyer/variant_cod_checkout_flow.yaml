@@ -29,8 +29,6 @@ tags:
 
 - runFlow: ../../elements/flows/proceed_to_checkout.yaml
 
-
-
 # --- Select COD ---
 - scrollUntilVisible:
     element:
