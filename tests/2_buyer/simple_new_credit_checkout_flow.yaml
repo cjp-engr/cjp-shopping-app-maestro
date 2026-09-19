@@ -1,13 +1,14 @@
 appId: ${APP_ID}
-name: "TC-096: Buyer Checks Out Simple Product via New Credit Card"
+name: "TC-097: Buyer Checks Out Simple Product via New Credit Card"
 # Description: Verifies that a buyer can add a simple product to cart, proceed to checkout,
 #              enter a new credit card, place the order, and see it in order history.
 # Preconditions:
 #   - Buyer account exists (BUYER_EMAIL/BUYER_PASSWORD)
 #   - At least one published product is visible on the home/search screen
 tags:
-  - checkout-credit-simple
+  - checkout-new-cc
   - buyer
+  - smoke
 
 ---
 
