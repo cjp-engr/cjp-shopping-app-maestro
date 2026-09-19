@@ -1,0 +1,45 @@
+appId: ${APP_ID}
+name: "TC-096: Checkout with saved credit card"
+# Description: Verifies that a buyer can add a simple product to cart, proceed to checkout,
+#              select Saved Credit, place the order, and see it in order history.
+# Preconditions:
+#   - Buyer account exists (BUYER_EMAIL/BUYER_PASSWORD)
+#   - At least one published product is visible on the home/search screen
+#   - Buyer has a saved shipping address
+tags:
+  - checkout-saved-cc
+  - buyer
+  - smoke
+
+---
+
+- runFlow: ../0_auth/buyer_login_flow.yaml
+
+- runFlow:
+    file: ../../elements/flows/search_and_add_to_cart.yaml
+    env:
+      PRODUCT_NAME: "The Art of Programming"
+
+- runFlow: ../../elements/flows/proceed_to_checkout.yaml
+
+# --- Credit Card is Selected by Default ---
+- scrollUntilVisible:
+    element:
+      text: "Credit Card"
+- assertVisible:
+    id: ${output.checkout.paymentMethod.creditCardSelected}
+    label: "Credit Card is selected by default"
+
+# --- Place Order ---
+- tapOn:
+    text: "Place Order"
+    label: "Click Place Order button"
+
+- assertVisible:
+    id: ${output.orders.ordersScreen}
+    label: "Verify Order screen"
+
+- assertVisible:
+    text: "The Art of Programming"
+    index: 0
+    label: "Verify that the latest order is on the first list"

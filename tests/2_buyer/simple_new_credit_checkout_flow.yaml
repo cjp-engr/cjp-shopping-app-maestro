@@ -6,9 +6,10 @@ name: "TC-096: Buyer Checks Out Simple Product via New Credit Card"
 #   - Buyer account exists (BUYER_EMAIL/BUYER_PASSWORD)
 #   - At least one published product is visible on the home/search screen
 tags:
-  - checkout-credit-simple
+  - checkout-new-cc
   - buyer
-
+  - smoke
+  
 ---
 
 - runFlow: ../0_auth/buyer_login_flow.yaml

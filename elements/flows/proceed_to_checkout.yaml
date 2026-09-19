@@ -6,6 +6,10 @@ appId: ${APP_ID}
     label: "Proceed to Checkout"
 
 # --- Fill Shipping Address ---
+- tapOn: 
+    id: ${output.checkout.address.new}
+    label: "Select New Address"
+
 - tapOn: "Street Address"
 - inputText:
     text: "123 Test Street"
