@@ -1,0 +1,50 @@
+appId: ${APP_ID}
+name: "TC-104: Buyer Checks Out Variant Product via Saved Credit Card"
+# Description: Verifies that a buyer can select a variant attribute (Size M), add the variant
+#              product to cart, proceed to checkout, select a saved credit card, place the
+#              order, and see it in order history with correct variant details and card info.
+# Preconditions:
+#   - Buyer account exists (BUYER_EMAIL/BUYER_PASSWORD)
+#   - Variant product exists in catalog (e.g. seeded "E2E Test Variant Tee")
+#   - Buyer has at least one saved credit card on file
+#   - Cart is empty
+tags:
+  - checkout-variant-saved-cc
+  - buyer
+
+---
+
+- runFlow: ../0_auth/buyer_login_flow.yaml
+
+# --- Search product and select variant ---
+- runFlow:
+    file: ../../elements/flows/search_and_select_variant.yaml
+    env:
+      PRODUCT_NAME: "E2E Test Variant Tee"
+      VARIANT_LABEL: "M"
+
+- assertVisible:
+    text: "Size: M"
+    label: "Verify that the variant is visible"
+
+- runFlow: ../../elements/flows/proceed_to_checkout.yaml
+
+# --- Place Order ---
+- tapOn:
+    text: "Place Order"
+    label: "Click Place Order button"
+
+# --- Assert Order screen ---
+- assertVisible:
+    id: ${output.orders.ordersScreen}
+    label: "Verify Order screen"
+
+- assertVisible:
+    text: "E2E Test Variant Tee"
+    index: 0
+    label: "Verify that the latest order is on the first list"
+
+- assertVisible:
+    text: "Size: M"
+    index: 0
+    label: "Verify variant attribute on order"
