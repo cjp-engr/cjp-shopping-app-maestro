@@ -56,4 +56,4 @@ tags:
 - assertVisible:
     text: "Size: M"
     index: 0
-    label: "Verify variant attribute on order"
+    label: "Verify that the variant order is showing"
