@@ -1,12 +1,19 @@
 appId: ${APP_ID}
 ---
 
+# --- Credit Card is Selected by Default ---
 - scrollUntilVisible:
     element:
       text: "Credit Card"
-- tapOn:
-    text: "Credit Card"
-    label: "Select Credit Card as Payment"
+- assertVisible:
+    id: ${output.checkout.paymentMethod.creditCardSelected}
+    label: "Credit Card is selected by default"
+
+- runFlow:
+    when:
+      visible: "+ New Card"
+    commands:
+      - tapOn: "+ New Card"
 
 - scrollUntilVisible:
     element:
